@@ -1,11 +1,13 @@
-import { defineNuxtModule, addPlugin, createResolver } from "@nuxt/kit";
+import { defineNuxtModule, addComponent, createResolver } from "@nuxt/kit";
+import { name, version } from "../package.json"; // TODO: Copy this approach to the real project!
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: "oziocb-nuxt-module-new",
+    name,
+    version,
     configKey: "oziocbNuxtModule",
   },
   // Default configuration options of the Nuxt module
@@ -13,7 +15,10 @@ export default defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/plugin"));
+    // From the runtime directory
+    addComponent({
+      name: "TestComponent", // name of the component to be used in vue templates
+      filePath: resolver.resolve("runtime/components/TestComponent.vue"),
+    });
   },
 });
