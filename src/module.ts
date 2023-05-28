@@ -9,6 +9,9 @@ export default defineNuxtModule<ModuleOptions>({
     name,
     version,
     configKey: "oziocbNuxtModule",
+    compatibility: {
+      nuxt: "^2.14.0",
+    },
   },
   // Default configuration options of the Nuxt module
   defaults: {},
