@@ -12,7 +12,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   // Default configuration options of the Nuxt module
   defaults: {},
-  setup(options, nuxt) {
+  setup() {
     const resolver = createResolver(import.meta.url);
 
     // From the runtime directory
